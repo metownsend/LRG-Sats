@@ -36,6 +36,16 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     targets = []
     targets = SDSS_data.field('BOSS_TARGET1')
 
+    # Array for tile number (cut for LOWZ LRGs is tile >= 10324)
+    tile = []
+    tile = SDSS_data.field('TILE')
+
+    # Array for chunk number (cut for CMASS is chunk != 'boss1' or 'boss2'
+    chunk = []
+    chunk = SDSS_data.field('CHUNK')
+
+    print('done reading in SDSS')
+
     # ----------------------------------------------------------------------
 
     # Section of code to find LRG targets
@@ -92,6 +102,8 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
 
     lrg = np.array(lrg)
 
+    print('done finding LRG flags')
+
     # ----------------------------------------------------------------------
 
     # Read in data from SDSS row matched DECaLS file
@@ -145,6 +157,8 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     zobs_MATCHED = []
     zobs_MATCHED = SpecObj_data.field('NOBS_Z')
 
+    print('done reading in DECaLS-SDSS matched file')
+
     # ----------------------------------------------------------------------
 
     # Create a unique identifier by combinding BRICKID and OBJID
@@ -161,6 +175,8 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     id_MATCHED = [int(i) for i in id_MATCHED]
     id_MATCHED = np.array(id_MATCHED)
 
+
+    print('done creating unique IDs for matched file')
     # ----------------------------------------------------------------------
 
     # Select LRGs from SpecObj file (with other cuts)
@@ -175,6 +191,8 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     zflux_LRG = zflux_MATCHED[LRG_only]
     id_LRG = id_MATCHED[LRG_only]
 
+
+    print('done making LRG only cut')
     # ----------------------------------------------------------------------
 
 
@@ -230,6 +248,8 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     zobs_ALL = []
     zobs_ALL = DECaLS_data.field('NOBS_Z')
 
+    print('done reading in DECaLS bricks')
+
     # ----------------------------------------------------------------------
 
     # Create a unique identifier by combinding BRICKID and OBJID
@@ -244,6 +264,7 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     id_ALL = np.array(id_ALL)
 
     print('length of id_ALL: ', len(id_ALL))
+    print('done creating unique IDs for brick file')
 
     # ----------------------------------------------------------------------
 
@@ -262,6 +283,8 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
 
     idcut = np.array(idcut)
 
+    print('done identifying LRGs in survey brick')
+
     # ----------------------------------------------------------------------
 
     # Make relevant cuts for survey brick; eliminates LRGs
@@ -276,6 +299,7 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     zflux_BKG = zflux_ALL[survey_cut]
 
     print(len(ra_BKG))
+    print('done making survey cuts')
 
     return id_LRG, ra_LRG, dec_LRG, ra_BKG, dec_BKG, z_LRG, gflux_LRG, rflux_LRG, zflux_LRG, gflux_BKG, rflux_BKG, zflux_BKG
 
