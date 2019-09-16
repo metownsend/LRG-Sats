@@ -190,6 +190,7 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     rflux_LRG = rflux_MATCHED[LRG_only]
     zflux_LRG = zflux_MATCHED[LRG_only]
     id_LRG = id_MATCHED[LRG_only]
+    specobjid_LRG = specobjid[LRG_only]
 
 
     print('done making LRG only cut')
@@ -301,7 +302,7 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     print(len(ra_BKG))
     print('done making survey cuts')
 
-    return id_LRG, ra_LRG, dec_LRG, ra_BKG, dec_BKG, z_LRG, gflux_LRG, rflux_LRG, zflux_LRG, gflux_BKG, rflux_BKG, zflux_BKG
+    return id_LRG, specobjid_LRG, ra_LRG, dec_LRG, ra_BKG, dec_BKG, z_LRG, gflux_LRG, rflux_LRG, zflux_LRG, gflux_BKG, rflux_BKG, zflux_BKG
 
 
 
