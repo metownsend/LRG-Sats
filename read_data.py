@@ -36,6 +36,16 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     targets = []
     targets = SDSS_data.field('BOSS_TARGET1')
 
+    # Array for tile number (cut for LOWZ LRGs is tile >= 10324)
+    tile = []
+    tile = SDSS_data.field('TILE')
+
+    # Array for chunk number (cut for CMASS is chunk != 'boss1' or 'boss2'
+    chunk = []
+    chunk = SDSS_data.field('CHUNK')
+
+    print('done reading in SDSS')
+
     # ----------------------------------------------------------------------
 
     # Section of code to find LRG targets
@@ -92,6 +102,8 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
 
     lrg = np.array(lrg)
 
+    print('done finding LRG flags')
+
     # ----------------------------------------------------------------------
 
     # Read in data from SDSS row matched DECaLS file
@@ -145,6 +157,8 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     zobs_MATCHED = []
     zobs_MATCHED = SpecObj_data.field('NOBS_Z')
 
+    print('done reading in DECaLS-SDSS matched file')
+
     # ----------------------------------------------------------------------
 
     # Create a unique identifier by combinding BRICKID and OBJID
@@ -161,11 +175,13 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     id_MATCHED = [int(i) for i in id_MATCHED]
     id_MATCHED = np.array(id_MATCHED)
 
+
+    print('done creating unique IDs for matched file')
     # ----------------------------------------------------------------------
 
     # Select LRGs from SpecObj file (with other cuts)
 
-    LRG_only = ((gobs_MATCHED >= 2.) & (robs_MATCHED >= 2.) & (zobs_MATCHED >= 2.) & (objid_MATCHED != -1) & (lrg == 1) & ((gal_type_MATCHED == 'SIMP') | (gal_type_MATCHED == "DEV") | (gal_type_MATCHED == "EXP") | (gal_type_MATCHED == "REX")) & (ra_MATCHED >= 241) & (ra_MATCHED <= 246) & (dec_MATCHED >= 6.5) & (dec_MATCHED <= 11.5) & (gal_class == 'GALAXY') & (spec == 1) & (zwarn_noqso == 0) & (class_noqso == 'GALAXY') & ((survey == 'sdss') | (survey == 'boss')))
+    LRG_only = ((gobs_MATCHED >= 2.) & (robs_MATCHED >= 2.) & (zobs_MATCHED >= 2.) & (gflux_MATCHED > 0.) & (rflux_MATCHED > 0.) & (zflux_MATCHED > 0.) & (objid_MATCHED != -1) & (lrg == 1) & ((gal_type_MATCHED == 'SIMP') | (gal_type_MATCHED == "DEV") | (gal_type_MATCHED == "EXP") | (gal_type_MATCHED == "REX")) & (ra_MATCHED >= 241) & (ra_MATCHED <= 246) & (dec_MATCHED >= 6.5) & (dec_MATCHED <= 11.5) & (gal_class == 'GALAXY') & (spec == 1) & (zwarn_noqso == 0) & (class_noqso == 'GALAXY') & ((survey == 'sdss') | (survey == 'boss')))
 
     z_LRG = z[LRG_only]
     ra_LRG = ra_MATCHED[LRG_only]
@@ -174,7 +190,10 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     rflux_LRG = rflux_MATCHED[LRG_only]
     zflux_LRG = zflux_MATCHED[LRG_only]
     id_LRG = id_MATCHED[LRG_only]
+    specobjid_LRG = specobjid[LRG_only]
 
+
+    print('done making LRG only cut')
     # ----------------------------------------------------------------------
 
 
@@ -230,6 +249,8 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     zobs_ALL = []
     zobs_ALL = DECaLS_data.field('NOBS_Z')
 
+    print('done reading in DECaLS bricks')
+
     # ----------------------------------------------------------------------
 
     # Create a unique identifier by combinding BRICKID and OBJID
@@ -244,6 +265,7 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     id_ALL = np.array(id_ALL)
 
     print('length of id_ALL: ', len(id_ALL))
+    print('done creating unique IDs for brick file')
 
     # ----------------------------------------------------------------------
 
@@ -262,6 +284,8 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
 
     idcut = np.array(idcut)
 
+    print('done identifying LRGs in survey brick')
+
     # ----------------------------------------------------------------------
 
     # Make relevant cuts for survey brick; eliminates LRGs
@@ -276,8 +300,9 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     zflux_BKG = zflux_ALL[survey_cut]
 
     print(len(ra_BKG))
+    print('done making survey cuts')
 
-    return id_LRG, ra_LRG, dec_LRG, ra_BKG, dec_BKG, z_LRG, gflux_LRG, rflux_LRG, zflux_LRG, gflux_BKG, rflux_BKG, zflux_BKG
+    return id_LRG, specobjid_LRG, ra_LRG, dec_LRG, ra_BKG, dec_BKG, z_LRG, gflux_LRG, rflux_LRG, zflux_LRG, gflux_BKG, rflux_BKG, zflux_BKG
 
 
 

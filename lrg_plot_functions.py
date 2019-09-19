@@ -28,11 +28,11 @@ def totalNsat(Nsat):
 	print("standard error is", sterr)
 
 	plt.rcParams["figure.figsize"] = [10, 8]
-	plt.title("Histogram of the Number of Satellite Galaxies", fontsize=15)
-	plt.hist(sumsat, bins=100)
+	plt.title("Histogram of the Number of Satellite Galaxies", fontsize=25)
+	plt.hist(sumsat, bins=50)
 	plt.axvline(linewidth=1, color='r')
-	plt.xlabel(r'$Number$ $of$ $Satellite$ $Galaxies$', fontsize=15)
-	plt.ylabel(r'$counts$', fontsize=15)
+	plt.xlabel(r'$Number$ $of$ $Satellite$ $Galaxies$', fontsize=25)
+	plt.ylabel(r'$counts$', fontsize=25)
 	# plt.show()
 	return(mediansat)
 

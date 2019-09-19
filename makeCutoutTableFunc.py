@@ -1,7 +1,7 @@
 # makeCutoutTableFunc.py
 # function to make a table of cutouts scrapped from DECaLS and SDSS
 
-def make_cutout_comparison_table(ra, dec, objid, z, specobjid, brickid): # tag, pixel):
+def make_cutout_comparison_table(ra, dec, id_LRG, z, specobjid): # tag, pixel):
     
     from astropy.io import ascii
     import numpy as np
@@ -10,9 +10,9 @@ def make_cutout_comparison_table(ra, dec, objid, z, specobjid, brickid): # tag, 
     from astropy.coordinates import SkyCoord
     from astropy import units as u
 
-    de_cutout_url = 'http://legacysurvey.org/viewer/jpeg-cutout/?ra={0.ra.deg}&dec={0.dec.deg}&layer=decals-dr7&pixscale=0.1&bands=grz'
-    mod_cutout_url = 'http://legacysurvey.org/viewer/jpeg-cutout/?ra={0.ra.deg}&dec={0.dec.deg}&layer=decals-dr7-model&pixscale=0.1&bands=grz'
-    resid_cutout_url = 'http://legacysurvey.org/viewer/jpeg-cutout/?ra={0.ra.deg}&dec={0.dec.deg}&layer=decals-dr7-resid&pixscale=0.1&bands=grz'
+    de_cutout_url = 'http://legacysurvey.org/viewer/jpeg-cutout/?ra={0.ra.deg}&dec={0.dec.deg}&layer=decals-dr8&pixscale=0.1&bands=grz'
+    mod_cutout_url = 'http://legacysurvey.org/viewer/jpeg-cutout/?ra={0.ra.deg}&dec={0.dec.deg}&layer=decals-dr8-model&pixscale=0.1&bands=grz'
+    resid_cutout_url = 'http://legacysurvey.org/viewer/jpeg-cutout/?ra={0.ra.deg}&dec={0.dec.deg}&layer=decals-dr8-resid&pixscale=0.1&bands=grz'
     sd_cutout_url = 'http://legacysurvey.org/viewer/jpeg-cutout/?ra={0.ra.deg}&dec={0.dec.deg}&layer=sdssco&pixscale=0.1&bands=gri'
     dviewurl = []
     dmodviewurl = []
@@ -24,9 +24,9 @@ def make_cutout_comparison_table(ra, dec, objid, z, specobjid, brickid): # tag, 
     redshift = []
 		
     for i in range(len(ra)):
-        dviewurl.append('http://legacysurvey.org/viewer?ra={}&dec={}&zoom=15&layer=decals-dr7'.format(ra[i], dec[i]))
-        dmodviewurl.append('http://legacysurvey.org/viewer?ra={}&dec={}&zoom=15&layer=decals-dr7-model'.format(ra[i], dec[i]))
-        dresidviewurl.append('http://legacysurvey.org/viewer?ra={}&dec={}&zoom=15&layer=decals-dr7-resid'.format(ra[i], dec[i]))
+        dviewurl.append('http://legacysurvey.org/viewer?ra={}&dec={}&zoom=15&layer=decals-dr8'.format(ra[i], dec[i]))
+        dmodviewurl.append('http://legacysurvey.org/viewer?ra={}&dec={}&zoom=15&layer=decals-dr8-model'.format(ra[i], dec[i]))
+        dresidviewurl.append('http://legacysurvey.org/viewer?ra={}&dec={}&zoom=15&layer=decals-dr8-resid'.format(ra[i], dec[i]))
         sviewurl.append('http://skyserver.sdss.org/dr14/en/tools/chart/navi.aspx?ra={}&dec={}'.format(ra[i], dec[i]))
 		
     
@@ -38,8 +38,8 @@ def make_cutout_comparison_table(ra, dec, objid, z, specobjid, brickid): # tag, 
         residimg = '<a href="{}"><img src="{}"></a>'.format(dresidviewurl[i], resid_cutout_url.format(sc))
         sdimg = '<a href="{}"><img src="{}"></a>'.format(sviewurl[i], sd_cutout_url.format(sc))
         # file = '<a href="{}"><img src="/Users/mtownsend/Documents/Cutouts/Radius_Cutouts/Cutouts/{}.jpg"></a>'.format(dviewurl[i], objid[i])
-        file = '<a href="{}"><img src="/Users/mtownsend/anaconda/GitHub/lrg-project/Cutouts/{}-{}.jpg"></a>'.format(dviewurl[i], brickid[i], objid[i])
-        info = '{}-{}<br>z={:.3f}<br><br><a href="{}">spectrum</a>'.format(brickid[i], objid[i], z[i], specurl)
+        file = '<a href="{}"><img src="/Users/mtownsend/anaconda/GitHub/lrg-project/Cutouts/{}.jpg"></a>'.format(dviewurl[i], id_LRG[i])
+        info = '{}<br>z={:.3f}<br><br><a href="{}">spectrum</a>'.format(id_LRG[i], z[i], specurl)
 # 		info = '{}-{}<br>z={:.3f}<br><br><a href="{}">spectrum</a>'.format(brickid_match[i], objstr[i], z[i], specurl)
 # 		info = '{}-{}<br>z={:.3f}<br><br>tag={}<br>pixel={} <br><a href="{}">spectrum</a>'.format(brickid[i], objid[i], z[i], tag[i], pixel[i], specurl)
         tabrows.append('<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'.format(info, deimg, modimg, residimg, sdimg, file))
