@@ -144,6 +144,22 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     zflux_MATCHED = []
     zflux_MATCHED = SpecObj_data.field('FLUX_Z')
 
+    # flux_W1
+    w1flux_MATCHED = []
+    w1flux_MATCHED = SpecObj_data.field('flux_w1')
+
+    # flux_W2
+    w2flux_MATCHED = []
+    w2flux_MATCHED = SpecObj_data.field('flux_w2')
+
+    # flux_W3
+    w3flux_MATCHED = []
+    w3flux_MATCHED = SpecObj_data.field('flux_w3')
+
+    # flux_W4
+    w4flux_MATCHED = []
+    w4flux_MATCHED = SpecObj_data.field('flux_w4')
+
     # nobs == number of images that contribute to the central pixel
     # nobs_g
     gobs_MATCHED = []
@@ -156,6 +172,49 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     # nobs_z
     zobs_MATCHED = []
     zobs_MATCHED = SpecObj_data.field('NOBS_Z')
+
+    #flux errors
+    gflux_ivar_MATCHED = []
+    gflux_ivar_MATCHED = SpecObj_data.field('flux_ivar_g')
+
+    rflux_ivar_MATCHED = []
+    rflux_ivar_MATCHED = SpecObj_data.field('flux_ivar_r')
+
+    zflux_ivar_MATCHED = []
+    zflux_ivar_MATCHED = SpecObj_data.field('flux_ivar_z')
+
+    w1flux_ivar_MATCHED = []
+    w1flux_ivar_MATCHED = SpecObj_data.field('flux_ivar_w1')
+
+    w2flux_ivar_MATCHED = []
+    w2flux_ivar_MATCHED = SpecObj_data.field('flux_ivar_w2')
+
+    w3flux_ivar_MATCHED = []
+    w3flux_ivar_MATCHED = SpecObj_data.field('flux_ivar_w3')
+
+    w4flux_ivar_MATCHED = []
+    w4flux_ivar_MATCHED = SpecObj_data.field('flux_ivar_w4')
+
+    mw_transmission_g_MATCHED = []
+    mw_transmission_g_MATCHED = SpecObj_data.field('mw_transmission_g')
+
+    mw_transmission_r_MATCHED = []
+    mw_transmission_r_MATCHED = SpecObj_data.field('mw_transmission_r')
+
+    mw_transmission_z_MATCHED = []
+    mw_transmission_z_MATCHED = SpecObj_data.field('mw_transmission_z')
+
+    mw_transmission_w1_MATCHED = []
+    mw_transmission_w1_MATCHED = SpecObj_data.field('mw_transmission_w1')
+
+    mw_transmission_w2_MATCHED = []
+    mw_transmission_w2_MATCHED = SpecObj_data.field('mw_transmission_w2')
+
+    mw_transmission_w3_MATCHED = []
+    mw_transmission_w3_MATCHED = SpecObj_data.field('mw_transmission_w3')
+
+    mw_transmission_w4_MATCHED = []
+    mw_transmission_w4_MATCHED = SpecObj_data.field('mw_transmission_w4')
 
     print('done reading in DECaLS-SDSS matched file')
 
@@ -189,8 +248,26 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     gflux_LRG = gflux_MATCHED[LRG_only]
     rflux_LRG = rflux_MATCHED[LRG_only]
     zflux_LRG = zflux_MATCHED[LRG_only]
+    w1flux_LRG = w1flux_MATCHED[LRG_only]
+    w2flux_LRG = w2flux_MATCHED[LRG_only]
+    w3flux_LRG = w3flux_MATCHED[LRG_only]
+    w4flux_LRG = w4flux_MATCHED[LRG_only]
+    gflux_ivar_LRG = gflux_ivar_MATCHED[LRG_only]
+    rflux_ivar_LRG = rflux_ivar_MATCHED[LRG_only]
+    zflux_ivar_LRG = zflux_ivar_MATCHED[LRG_only]
+    w1flux_ivar_LRG = w1flux_ivar_MATCHED[LRG_only]
+    w2flux_ivar_LRG = w2flux_ivar_MATCHED[LRG_only]
+    w3flux_ivar_LRG = w3flux_ivar_MATCHED[LRG_only]
+    w4flux_ivar_LRG = w4flux_ivar_MATCHED[LRG_only]
     id_LRG = id_MATCHED[LRG_only]
     specobjid_LRG = specobjid[LRG_only]
+    mw_transmission_g_LRG = mw_transmission_g_MATCHED[LRG_only]
+    mw_transmission_r_LRG = mw_transmission_r_MATCHED[LRG_only]
+    mw_transmission_z_LRG = mw_transmission_z_MATCHED[LRG_only]
+    mw_transmission_w1_LRG = mw_transmission_w1_MATCHED[LRG_only]
+    mw_transmission_w2_LRG = mw_transmission_w2_MATCHED[LRG_only]
+    mw_transmission_w3_LRG = mw_transmission_w3_MATCHED[LRG_only]
+    mw_transmission_w4_LRG = mw_transmission_w4_MATCHED[LRG_only]
 
 
     print('done making LRG only cut')
@@ -236,6 +313,22 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     zflux_ALL = []
     zflux_ALL = DECaLS_data.field('FLUX_Z')
 
+    # flux_W1
+    w1flux_ALL = []
+    w1flux_ALL = DECaLS_data.field('flux_w1')
+
+    # flux_W2
+    w2flux_ALL = []
+    w2flux_ALL = DECaLS_data.field('flux_w2')
+
+    # flux_W3
+    w3flux_ALL = []
+    w3flux_ALL = DECaLS_data.field('flux_w3')
+
+    # flux_W4
+    w4flux_ALL = []
+    w4flux_ALL = DECaLS_data.field('flux_w4')
+
     # nobs == number of images that contribute to the central pixel
     # nobs_g
     gobs_ALL = []
@@ -248,6 +341,49 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     # nobs_z
     zobs_ALL = []
     zobs_ALL = DECaLS_data.field('NOBS_Z')
+
+    # flux errors
+    gflux_ivar_ALL = []
+    gflux_ivar_ALL = DECaLS_data.field('flux_ivar_g')
+
+    rflux_ivar_ALL = []
+    rflux_ivar_ALL = DECaLS_data.field('flux_ivar_r')
+
+    zflux_ivar_ALL = []
+    zflux_ivar_ALL = DECaLS_data.field('flux_ivar_z')
+
+    w1flux_ivar_ALL = []
+    w1flux_ivar_ALL = DECaLS_data.field('flux_ivar_w1')
+
+    w2flux_ivar_ALL = []
+    w2flux_ivar_ALL = DECaLS_data.field('flux_ivar_w2')
+
+    w3flux_ivar_ALL = []
+    w3flux_ivar_ALL = DECaLS_data.field('flux_ivar_w3')
+
+    w4flux_ivar_ALL = []
+    w4flux_ivar_ALL = DECaLS_data.field('flux_ivar_w4')
+
+    mw_transmission_g_ALL = []
+    mw_transmission_g_ALL = DECaLS_data.field('mw_transmission_g')
+
+    mw_transmission_r_ALL = []
+    mw_transmission_r_ALL = DECaLS_data.field('mw_transmission_r')
+
+    mw_transmission_z_ALL = []
+    mw_transmission_z_ALL = DECaLS_data.field('mw_transmission_z')
+
+    mw_transmission_w1_ALL = []
+    mw_transmission_w1_ALL = DECaLS_data.field('mw_transmission_w1')
+
+    mw_transmission_w2_ALL = []
+    mw_transmission_w2_ALL = DECaLS_data.field('mw_transmission_w2')
+
+    mw_transmission_w3_ALL = []
+    mw_transmission_w3_ALL = DECaLS_data.field('mw_transmission_w3')
+
+    mw_transmission_w4_ALL = []
+    mw_transmission_w4_ALL = DECaLS_data.field('mw_transmission_w4')
 
     print('done reading in DECaLS bricks')
 
@@ -298,11 +434,30 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     gflux_BKG = gflux_ALL[survey_cut]
     rflux_BKG = rflux_ALL[survey_cut]
     zflux_BKG = zflux_ALL[survey_cut]
+    w1flux_BKG = w1flux_ALL[survey_cut]
+    w2flux_BKG = w2flux_ALL[survey_cut]
+    w3flux_BKG = w3flux_ALL[survey_cut]
+    w4flux_BKG = w4flux_ALL[survey_cut]
+    gflux_ivar_BKG = gflux_ivar_ALL[survey_cut]
+    rflux_ivar_BKG = rflux_ivar_ALL[survey_cut]
+    zflux_ivar_BKG = zflux_ivar_ALL[survey_cut]
+    w1flux_ivar_BKG = w1flux_ivar_ALL[survey_cut]
+    w2flux_ivar_BKG = w2flux_ivar_ALL[survey_cut]
+    w3flux_ivar_BKG = w3flux_ivar_ALL[survey_cut]
+    w4flux_ivar_BKG = w4flux_ivar_ALL[survey_cut]
+    mw_transmission_g_BKG = mw_transmission_g_ALL[survey_cut]
+    mw_transmission_r_BKG = mw_transmission_r_ALL[survey_cut]
+    mw_transmission_z_BKG = mw_transmission_z_ALL[survey_cut]
+    mw_transmission_w1_BKG = mw_transmission_w1_ALL[survey_cut]
+    mw_transmission_w2_BKG = mw_transmission_w2_ALL[survey_cut]
+    mw_transmission_w3_BKG = mw_transmission_w3_ALL[survey_cut]
+    mw_transmission_w4_BKG = mw_transmission_w4_ALL[survey_cut]
+
 
     print(len(ra_BKG))
     print('done making survey cuts')
 
-    return id_LRG, specobjid_LRG, ra_LRG, dec_LRG, ra_BKG, dec_BKG, z_LRG, gflux_LRG, rflux_LRG, zflux_LRG, gflux_BKG, rflux_BKG, zflux_BKG
+    return id_LRG, specobjid_LRG, ra_LRG, dec_LRG, ra_BKG, dec_BKG, z_LRG, gflux_LRG, rflux_LRG, zflux_LRG, w1flux_LRG, w2flux_LRG, w3flux_LRG, w4flux_LRG, gflux_BKG, rflux_BKG, zflux_BKG, w1flux_BKG, w2flux_BKG, w3flux_BKG, w4flux_BKG, gflux_ivar_LRG, rflux_ivar_LRG, zflux_ivar_LRG, w1flux_ivar_LRG, w2flux_ivar_LRG, w3flux_ivar_LRG, w4flux_ivar_LRG, gflux_ivar_BKG, rflux_ivar_BKG, zflux_ivar_BKG, w1flux_ivar_BKG, w2flux_ivar_BKG, w3flux_ivar_BKG, w4flux_ivar_BKG, mw_transmission_g_LRG, mw_transmission_r_LRG, mw_transmission_z_LRG, mw_transmission_g_BKG, mw_transmission_r_BKG, mw_transmission_z_BKG, mw_transmission_w1_LRG, mw_transmission_w2_LRG, mw_transmission_w3_LRG, mw_transmission_w4_LRG, mw_transmission_w1_BKG, mw_transmission_w2_BKG, mw_transmission_w3_BKG, mw_transmission_w4_BKG
 
 
 

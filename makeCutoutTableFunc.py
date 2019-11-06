@@ -10,10 +10,10 @@ def make_cutout_comparison_table(ra, dec, id_LRG, z, specobjid): # tag, pixel):
     from astropy.coordinates import SkyCoord
     from astropy import units as u
 
-    de_cutout_url = 'http://legacysurvey.org/viewer/jpeg-cutout/?ra={0.ra.deg}&dec={0.dec.deg}&layer=decals-dr8&pixscale=0.1&bands=grz'
-    mod_cutout_url = 'http://legacysurvey.org/viewer/jpeg-cutout/?ra={0.ra.deg}&dec={0.dec.deg}&layer=decals-dr8-model&pixscale=0.1&bands=grz'
-    resid_cutout_url = 'http://legacysurvey.org/viewer/jpeg-cutout/?ra={0.ra.deg}&dec={0.dec.deg}&layer=decals-dr8-resid&pixscale=0.1&bands=grz'
-    sd_cutout_url = 'http://legacysurvey.org/viewer/jpeg-cutout/?ra={0.ra.deg}&dec={0.dec.deg}&layer=sdssco&pixscale=0.1&bands=gri'
+    de_cutout_url = 'http://legacysurvey.org/viewer/jpeg-cutout/?ra={0.ra.deg}&dec={0.dec.deg}&layer=dr8&pixscale=0.27&bands=grz'
+    mod_cutout_url = 'http://legacysurvey.org/viewer/jpeg-cutout/?ra={0.ra.deg}&dec={0.dec.deg}&layer=dr8-model&pixscale=0.27&bands=grz'
+    resid_cutout_url = 'http://legacysurvey.org/viewer/jpeg-cutout/?ra={0.ra.deg}&dec={0.dec.deg}&layer=dr8-resid&pixscale=0.27&bands=grz'
+    sd_cutout_url = 'http://legacysurvey.org/viewer/jpeg-cutout/?ra={0.ra.deg}&dec={0.dec.deg}&layer=sdssco&pixscale=0.27&bands=gri'
     dviewurl = []
     dmodviewurl = []
     dresidviewurl = []
@@ -24,9 +24,9 @@ def make_cutout_comparison_table(ra, dec, id_LRG, z, specobjid): # tag, pixel):
     redshift = []
 		
     for i in range(len(ra)):
-        dviewurl.append('http://legacysurvey.org/viewer?ra={}&dec={}&zoom=15&layer=decals-dr8'.format(ra[i], dec[i]))
-        dmodviewurl.append('http://legacysurvey.org/viewer?ra={}&dec={}&zoom=15&layer=decals-dr8-model'.format(ra[i], dec[i]))
-        dresidviewurl.append('http://legacysurvey.org/viewer?ra={}&dec={}&zoom=15&layer=decals-dr8-resid'.format(ra[i], dec[i]))
+        dviewurl.append('http://legacysurvey.org/viewer?ra={}&dec={}&zoom=15&layer=dr8'.format(ra[i], dec[i]))
+        dmodviewurl.append('http://legacysurvey.org/viewer?ra={}&dec={}&zoom=15&layer=dr8-model'.format(ra[i], dec[i]))
+        dresidviewurl.append('http://legacysurvey.org/viewer?ra={}&dec={}&zoom=15&layer=dr8-resid'.format(ra[i], dec[i]))
         sviewurl.append('http://skyserver.sdss.org/dr14/en/tools/chart/navi.aspx?ra={}&dec={}'.format(ra[i], dec[i]))
 		
     
@@ -55,7 +55,6 @@ def make_cutout_comparison_table(ra, dec, id_LRG, z, specobjid): # tag, pixel):
 	<th>Model</th>
 	<th>Residual</th>
 	<th>SDSS</th>
-	# <th>Radii</th>
 	</tr>
 
 	{}
