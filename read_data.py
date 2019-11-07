@@ -50,59 +50,59 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
 
     # Section of code to find LRG targets
 
-    def divideBy2(decNumber):
-
-        # from pythonds.basic.stack import Stack
-        # import numpy as np
-
-        np.vectorize(decNumber)
-        remstack = Stack()
-
-        if decNumber == 0: return "0"
-
-        while decNumber > 0:
-            rem = decNumber % 2
-            remstack.push(rem)
-            decNumber = decNumber // 2
-
-        binString = ""
-        while not remstack.isEmpty():
-            binString = binString + str(remstack.pop())
-
-        return binString
-
-    # Function to find LRG targets
-
-    divideBy2Vec = np.vectorize(divideBy2)
-
-
-    a = divideBy2Vec(targets)  # gives binary in string form
-
-    print(a)
-
-    b = []
-
-    for i in range(len(a)):
-        b.append(list((a[i])))
-        b[i].reverse()
-
-
-    lrg = []
-
-    # Finds flags for BOSS LOWZ and CMASS sample
-    for i in range(len(b)):
-        try:
-            if (b[i][0] == '1') or (b[i][1] == '1'):
-                lrg.append(int(1))
-            else:
-                lrg.append(int(0))
-        except IndexError:
-            pass
-            lrg.append(int(0))
-
-    lrg = np.array(lrg)
-
-    print('done finding LRG flags')
+    # def divideBy2(decNumber):
+    #
+    #     # from pythonds.basic.stack import Stack
+    #     # import numpy as np
+    #
+    #     np.vectorize(decNumber)
+    #     remstack = Stack()
+    #
+    #     if decNumber == 0: return "0"
+    #
+    #     while decNumber > 0:
+    #         rem = decNumber % 2
+    #         remstack.push(rem)
+    #         decNumber = decNumber // 2
+    #
+    #     binString = ""
+    #     while not remstack.isEmpty():
+    #         binString = binString + str(remstack.pop())
+    #
+    #     return binString
+    #
+    # # Function to find LRG targets
+    #
+    # divideBy2Vec = np.vectorize(divideBy2)
+    #
+    #
+    # a = divideBy2Vec(targets)  # gives binary in string form
+    #
+    # print(a)
+    #
+    # b = []
+    #
+    # for i in range(len(a)):
+    #     b.append(list((a[i])))
+    #     b[i].reverse()
+    #
+    #
+    # lrg = []
+    #
+    # # Finds flags for BOSS LOWZ and CMASS sample
+    # for i in range(len(b)):
+    #     try:
+    #         if (b[i][0] == '1') or (b[i][1] == '1'):
+    #             lrg.append(int(1))
+    #         else:
+    #             lrg.append(int(0))
+    #     except IndexError:
+    #         pass
+    #         lrg.append(int(0))
+    #
+    # lrg = np.array(lrg)
+    #
+    # print('done finding LRG flags')
 
     # ----------------------------------------------------------------------
 
@@ -216,6 +216,10 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     mw_transmission_w4_MATCHED = []
     mw_transmission_w4_MATCHED = SpecObj_data.field('mw_transmission_w4')
 
+    # maskbits
+    maskbits_MATCHED = []
+    maskbits_MATCHED = SpecObj_data.field('maskbits')
+
     print('done reading in DECaLS-SDSS matched file')
 
     # ----------------------------------------------------------------------
@@ -240,7 +244,7 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
 
     # Select LRGs from SpecObj file (with other cuts)
 
-    LRG_only = ((gobs_MATCHED >= 2.) & (robs_MATCHED >= 2.) & (zobs_MATCHED >= 2.) & (gflux_MATCHED > 0.) & (rflux_MATCHED > 0.) & (zflux_MATCHED > 0.) & (objid_MATCHED != -1) & (lrg == 1) & ((gal_type_MATCHED == 'SIMP') | (gal_type_MATCHED == "DEV") | (gal_type_MATCHED == "EXP") | (gal_type_MATCHED == "REX")) & (ra_MATCHED >= 241) & (ra_MATCHED <= 246) & (dec_MATCHED >= 6.5) & (dec_MATCHED <= 11.5) & (gal_class == 'GALAXY') & (spec == 1) & (zwarn_noqso == 0) & (class_noqso == 'GALAXY') & ((survey == 'sdss') | (survey == 'boss')))
+    LRG_only = ((((targets & 2**0)!=0) | ((targets & 2**1)!=0)) & ((maskbits_MATCHED & 2**1)==0) & ((maskbits_MATCHED & 2**11)==0) & ((maskbits_MATCHED & 2**12)==0) & ((maskbits_MATCHED & 2**13)==0) & ((maskbits_MATCHED & 2**5)==0) & ((maskbits_MATCHED & 2**6)==0) & ((maskbits_MATCHED & 2**7)==0) & (gobs_MATCHED >= 2.) & (robs_MATCHED >= 2.) & (zobs_MATCHED >= 2.) & (gflux_MATCHED > 0.) & (rflux_MATCHED > 0.) & (zflux_MATCHED > 0.) & (objid_MATCHED != -1) &  ((gal_type_MATCHED == 'SIMP') | (gal_type_MATCHED == "DEV") | (gal_type_MATCHED == "EXP") | (gal_type_MATCHED == "REX")) & (ra_MATCHED >= 241) & (ra_MATCHED <= 246) & (dec_MATCHED >= 6.5) & (dec_MATCHED <= 11.5) & (gal_class == 'GALAXY') & (spec == 1) & (zwarn_noqso == 0) & (class_noqso == 'GALAXY') & ((survey == 'sdss') | (survey == 'boss')))
 
     z_LRG = z[LRG_only]
     ra_LRG = ra_MATCHED[LRG_only]
@@ -385,6 +389,10 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     mw_transmission_w4_ALL = []
     mw_transmission_w4_ALL = DECaLS_data.field('mw_transmission_w4')
 
+    # maskbits
+    maskbits_ALL = []
+    maskbits_ALL = DECaLS_data.field('maskbits')
+
     print('done reading in DECaLS bricks')
 
     # ----------------------------------------------------------------------
@@ -426,7 +434,7 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
 
     # Make relevant cuts for survey brick; eliminates LRGs
 
-    survey_cut = ((idcut == 0) & (gobs_ALL >= 2.) & (robs_ALL >= 2.) & (zobs_ALL >= 2.) & (gflux_ALL > 0.) & (rflux_ALL > 0.) & (zflux_ALL > 0.) & ((gal_type_ALL == 'SIMP') | (gal_type_ALL == "DEV") | (gal_type_ALL == "EXP") | (gal_type_ALL == "REX")) & (ra_ALL >= 241) & (ra_ALL <= 246) & (dec_ALL >= 6.5) & (dec_ALL <= 11.5))
+    survey_cut = (((maskbits_ALL & 2**1)==0) & ((maskbits_ALL & 2**11)==0) & ((maskbits_ALL & 2**12)==0) & ((maskbits_ALL & 2**13)==0) & ((maskbits_ALL & 2**5)==0) & ((maskbits_ALL & 2**6)==0) & ((maskbits_ALL & 2**7)==0) & (idcut == 0) & (gobs_ALL >= 2.) & (robs_ALL >= 2.) & (zobs_ALL >= 2.) & (gflux_ALL > 0.) & (rflux_ALL > 0.) & (zflux_ALL > 0.) & ((gal_type_ALL == 'SIMP') | (gal_type_ALL == "DEV") | (gal_type_ALL == "EXP") | (gal_type_ALL == "REX")) & (ra_ALL >= 241) & (ra_ALL <= 246) & (dec_ALL >= 6.5) & (dec_ALL <= 11.5))
 
 
     ra_BKG = ra_ALL[survey_cut]
