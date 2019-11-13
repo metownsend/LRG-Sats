@@ -42,7 +42,7 @@ def make_cutout_comparison_table(ra, dec, id_LRG, z, specobjid): # tag, pixel):
         info = '{}<br>z={:.3f}<br><br><a href="{}">spectrum</a>'.format(id_LRG[i], z[i], specurl)
 # 		info = '{}-{}<br>z={:.3f}<br><br><a href="{}">spectrum</a>'.format(brickid_match[i], objstr[i], z[i], specurl)
 # 		info = '{}-{}<br>z={:.3f}<br><br>tag={}<br>pixel={} <br><a href="{}">spectrum</a>'.format(brickid[i], objid[i], z[i], tag[i], pixel[i], specurl)
-        tabrows.append('<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'.format(info, deimg, modimg, residimg, sdimg, file))
+        tabrows.append('<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'.format(info, deimg, modimg, residimg, sdimg, file))
 
 		
     htmlstr = """
