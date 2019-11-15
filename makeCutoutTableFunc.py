@@ -1,7 +1,7 @@
 # makeCutoutTableFunc.py
 # function to make a table of cutouts scrapped from DECaLS and SDSS
 
-def make_cutout_comparison_table(ra, dec, id_LRG, z, specobjid): # tag, pixel):
+def make_cutout_comparison_table(ra, dec, id_LRG, z, plateid, fiberid): # specobjid, tag, pixel):
     
     from astropy.io import ascii
     import numpy as np
@@ -31,7 +31,8 @@ def make_cutout_comparison_table(ra, dec, id_LRG, z, specobjid): # tag, pixel):
 		
     
     for i in range(len(ra)):
-        specurl = 'http://skyserver.sdss.org/dr14/en/get/SpecById.ashx?id={}'.format(specobjid[i])
+        # specurl = 'http://skyserver.sdss.org/dr14/en/get/SpecById.ashx?id={}'.format(specobjid[i])
+        specurl = 'http://skyserver.sdss.org/dr14/en/get/SpecByPF.ashx?P={}&F={}&submit1=Get+Spectrum'.format(plateid[i], fiberid[i])
         sc = SkyCoord(ra[i], dec[i], unit=u.deg)
         deimg = '<a href="{}"><img src="{}"></a>'.format(dviewurl[i], de_cutout_url.format(sc))
         modimg = '<a href="{}"><img src="{}"></a>'.format(dmodviewurl[i], mod_cutout_url.format(sc))

@@ -44,6 +44,12 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     chunk = []
     chunk = SDSS_data.field('CHUNK')
 
+    plate = []
+    plate = SDSS_data.field('PLATEID')
+
+    fiberid = []
+    fiberid = SDSS_data.field('FIBERID')
+
     print('done reading in SDSS')
 
     # ----------------------------------------------------------------------
@@ -265,6 +271,8 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     w4flux_ivar_LRG = w4flux_ivar_MATCHED[LRG_only]
     id_LRG = id_MATCHED[LRG_only]
     specobjid_LRG = specobjid[LRG_only]
+    plate_LRG = plate[LRG_only]
+    fiberid_LRG = fiberid[LRG_only]
     mw_transmission_g_LRG = mw_transmission_g_MATCHED[LRG_only]
     mw_transmission_r_LRG = mw_transmission_r_MATCHED[LRG_only]
     mw_transmission_z_LRG = mw_transmission_z_MATCHED[LRG_only]
@@ -465,7 +473,7 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
     print(len(ra_BKG))
     print('done making survey cuts')
 
-    return id_LRG, specobjid_LRG, ra_LRG, dec_LRG, ra_BKG, dec_BKG, z_LRG, gflux_LRG, rflux_LRG, zflux_LRG, w1flux_LRG, w2flux_LRG, w3flux_LRG, w4flux_LRG, gflux_BKG, rflux_BKG, zflux_BKG, w1flux_BKG, w2flux_BKG, w3flux_BKG, w4flux_BKG, gflux_ivar_LRG, rflux_ivar_LRG, zflux_ivar_LRG, w1flux_ivar_LRG, w2flux_ivar_LRG, w3flux_ivar_LRG, w4flux_ivar_LRG, gflux_ivar_BKG, rflux_ivar_BKG, zflux_ivar_BKG, w1flux_ivar_BKG, w2flux_ivar_BKG, w3flux_ivar_BKG, w4flux_ivar_BKG, mw_transmission_g_LRG, mw_transmission_r_LRG, mw_transmission_z_LRG, mw_transmission_g_BKG, mw_transmission_r_BKG, mw_transmission_z_BKG, mw_transmission_w1_LRG, mw_transmission_w2_LRG, mw_transmission_w3_LRG, mw_transmission_w4_LRG, mw_transmission_w1_BKG, mw_transmission_w2_BKG, mw_transmission_w3_BKG, mw_transmission_w4_BKG
+    return id_LRG, plate_LRG, fiberid_LRG, specobjid_LRG, ra_LRG, dec_LRG, ra_BKG, dec_BKG, z_LRG, gflux_LRG, rflux_LRG, zflux_LRG, w1flux_LRG, w2flux_LRG, w3flux_LRG, w4flux_LRG, gflux_BKG, rflux_BKG, zflux_BKG, w1flux_BKG, w2flux_BKG, w3flux_BKG, w4flux_BKG, gflux_ivar_LRG, rflux_ivar_LRG, zflux_ivar_LRG, w1flux_ivar_LRG, w2flux_ivar_LRG, w3flux_ivar_LRG, w4flux_ivar_LRG, gflux_ivar_BKG, rflux_ivar_BKG, zflux_ivar_BKG, w1flux_ivar_BKG, w2flux_ivar_BKG, w3flux_ivar_BKG, w4flux_ivar_BKG, mw_transmission_g_LRG, mw_transmission_r_LRG, mw_transmission_z_LRG, mw_transmission_g_BKG, mw_transmission_r_BKG, mw_transmission_z_BKG, mw_transmission_w1_LRG, mw_transmission_w2_LRG, mw_transmission_w3_LRG, mw_transmission_w4_LRG, mw_transmission_w1_BKG, mw_transmission_w2_BKG, mw_transmission_w3_BKG, mw_transmission_w4_BKG
 
 
 
