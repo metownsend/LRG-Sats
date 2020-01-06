@@ -442,7 +442,7 @@ def readData(SpecObj_data, SDSS_data, DECaLS_data):
 
     # Make relevant cuts for survey brick; eliminates LRGs
 
-    survey_cut = (((maskbits_ALL & 2**1)==0) & ((maskbits_ALL & 2**11)==0) & ((maskbits_ALL & 2**12)==0) & ((maskbits_ALL & 2**13)==0) & ((maskbits_ALL & 2**5)==0) & ((maskbits_ALL & 2**6)==0) & ((maskbits_ALL & 2**7)==0) & (idcut == 0) & (gobs_ALL >= 2.) & (robs_ALL >= 2.) & (zobs_ALL >= 2.) & (gflux_ALL > 0.) & (rflux_ALL > 0.) & (zflux_ALL > 0.) & ((gal_type_ALL == 'SIMP') | (gal_type_ALL == "DEV") | (gal_type_ALL == "EXP") | (gal_type_ALL == "REX")) & (ra_ALL >= 241) & (ra_ALL <= 246) & (dec_ALL >= 6.5) & (dec_ALL <= 11.5))
+    survey_cut = (((maskbits_ALL & 2**1)==0) & ((maskbits_ALL & 2**11)==0) & ((maskbits_ALL & 2**12)==0) & ((maskbits_ALL & 2**13)==0) & ((maskbits_ALL & 2**5)==0) & ((maskbits_ALL & 2**6)==0) & ((maskbits_ALL & 2**7)==0) & (idcut == 0) & (gobs_ALL >= 2.) & (robs_ALL >= 2.) & (zobs_ALL >= 2.) & (gflux_ALL > 0.) & (rflux_ALL > 0.) & (zflux_ALL > 0.) & ((gal_type_ALL == 'SIMP') | (gal_type_ALL == "DEV") | (gal_type_ALL == "EXP") | (gal_type_ALL == "REX"))  & (ra_ALL >= 241) & (ra_ALL <= 246) & (dec_ALL >= 6.5) & (dec_ALL <= 11.5))
 
 
     ra_BKG = ra_ALL[survey_cut]
