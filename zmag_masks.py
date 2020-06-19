@@ -37,4 +37,17 @@ def making_masks(H2D, H3D, lum_limit, x, y, z, lum, xedges, yedges, zedges):
                 else:
                     mask_array[i][j][k] = 0
 
+
+    # # Modification made to second loop to determine which axis corresponds to which porjection
+    # for i in range(len(mask_array)):
+    #     for j in range(len(mask_array[i])):
+    #         for k in range(len(mask_array[i][j])):
+    #             if ((rz_edges[i] > 2.) & (rz_edges[i] < 6.) & (zmag_edges[k] >= zmag_edges[10]) & (
+    #                     zmag_edges[k] <= zmag_edges[16])):
+    #                 mask_array[i][j][k] = 1
+    #             elif ((rz_edges[i] > 6.) & (zmag_edges[k] >= zmag_edges[10]) & (zmag_edges[k] <= zmag_edges[16])):
+    #                 mask_array[i][j][k] = 2
+    #             else:
+    #                 mask_array[i][j][k] = 0
+
     return median_zmag_array, mask_array
