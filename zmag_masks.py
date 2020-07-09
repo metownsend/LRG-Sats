@@ -30,7 +30,7 @@ def making_masks(H2D, H3D, lum_limit, x, y, z, lum, xedges, yedges, zedges):
     for i in range(len(mask_array)):
         for j in range(len(mask_array[i])):
             for k in range(len(mask_array[i][j])):
-                if (medzmag[j][k] >= zedges[i + 1]):
+                if (medzmag[i][j] >= zedges[k + 1]):
                 # if ((medzmag[i][j] >= 22.02509002685544) & (22.02509002685544 >= zedges[k + 1])):
                     mask_array[i][j][k] = 1
                 else:
