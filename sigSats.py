@@ -5,6 +5,8 @@ def sigSats(Nsat, percentile):
     # sumsat is an array
     # percentile is the value of distribution at x percentile
 
+    import numpy as np
+
     sumsat = []
     # Sum up number of satellite galaxies for every LRG
     for i in range(len(Nsat)):
