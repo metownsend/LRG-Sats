@@ -132,5 +132,5 @@ def nearNeighbor(distance, kpc_DA, ra_LRG, dec_LRG, ra_BKG, dec_BKG, mag_LRG, ma
                                                  density=False)
             near.append(hist3d)
 
-    return (distance_kpc, near, gal_tree, dist, index, nn1)
+    return (distance_kpc, near, gal_tree, dist, index)
     # return (near, gal_tree)
