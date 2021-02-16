@@ -1,6 +1,6 @@
 # A function to calculate the local background around LRGs and calculate the expected number of interloper galaxies
 
-def localBKG_and_interlopersHEALPix(nside, inner_dist, outer_dist, ra_LRG, dec_LRG, pixnums, mag, color1, color2, edges, distance_kpc, kpc_DA):
+def localBKG_and_interlopersHEALPix(nside, inner_dist, outer_dist, ra_LRG, dec_LRG, pixnums, mag, color1, color2, edges, distance_kpc, kpc_DA, percent_kept):
 
     # inner_dist == inner radius of annulus used to define the background
     # outer_dist == outer radius of annulus used to define the background
@@ -90,7 +90,8 @@ def localBKG_and_interlopersHEALPix(nside, inner_dist, outer_dist, ra_LRG, dec_L
 
     sigma = []
     for i in range(len(annulus_area)):
-        sigma.append(localBKG[i] / annulus_area[i])
+        # sigma.append(localBKG[i] / annulus_area[i] )
+        sigma.append(localBKG[i] / (annulus_area[i] * percent_kept[i]))
 
     # calculate solid angle (omega) enclosed by search radius
 
