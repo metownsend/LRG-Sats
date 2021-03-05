@@ -1,0 +1,31 @@
+Notebooks and .py files
+
+satellite_measurement.ipynb --> main place for running analysis
+    - cosmoCalcFunc.py
+    - nearNeighbor.py
+    - localBKG_and_interlopersHEALPix.py
+starmask_area.ipynb --> calculate star masks to read into localBKG_and_interlopersHEALPix.py
+gaia_search.ipynb --> calcuate area of G2 stars to read into localBKG_and_interlopersHEALPix.py
+percentages.ipynb --> calculate 80th, 90th, and 99th percentile of LRG satellite distribution
+selection_matrices.ipynb --> create median zmag and selection matrices
+bootstrap_low.ipynb --> finds confidence limits for all three redshift bins
+    - also where I make that cool one_plot
+null_test.ipynb --> runs analysis on randomly selected galaxies
+
+
+
+Files I need for analysis
+
+LRG data files
+    - eg /Users/mtownsend/Documents/LRG_Data/ra_LRGs-dr9.npz
+BKG data files
+    - eg /Users/mtownsend/Documents/LRG_Data/ra_BKG-dr9.npz
+Maskbits for LRGs and BKG because those cuts are not done in data files
+    - eg /Users/mtownsend/Documents/LRG_Data/maskbits_all_LRGs-dr9.npz
+selection matrices
+    - /Users/mtownsend/Desktop/lowz_smatrix-1matrices-newbins.npz
+    - /Users/mtownsend/Desktop/midz_smatrix-2matrices-newbins.npz
+    - /Users/mtownsend/Desktop/highz_smatrix-3matrices-newbins.npz
+percentages of area kept
+    - /Users/mtownsend/Documents/LRG_Data/percent_kept_v2.npz --> percent area of background kept and read into localBKG_and_interlopersHEALPix.py
+    - Users/mtownsend/Documents/LRG_Data/percent_kept_a500.npz --> percent area of search radius kept and red into localBKG_and_interlopersHEALPix.py 
